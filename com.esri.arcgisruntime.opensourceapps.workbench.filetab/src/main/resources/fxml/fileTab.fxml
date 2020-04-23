@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.TextFlow?>
+<fx:root type="Tab" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <StackPane>
+        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+            <TextFlow fx:id="textFlow"/>
+        </ScrollPane>
+    </StackPane>
+</fx:root>

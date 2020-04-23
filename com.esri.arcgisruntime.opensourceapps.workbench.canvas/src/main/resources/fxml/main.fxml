@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.esri.arcgisruntime.opensourceapps.workbench.canvas.CanvasController">
+    <BorderPane fx:id="borderPane">
+        <top>
+            <MenuBar fx:id="menuBar"/>
+        </top>
+    </BorderPane>
+</StackPane>

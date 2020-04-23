@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.esri.arcgisruntime.opensourceapps</groupId>
+    <artifactId>workbench-java</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>workbench</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.canvas</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.core</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.features.all</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.filemenu</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.filetab</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.menu</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.perspective</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.preferences</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.project</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.scenic-view</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.selection</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.splash</module>
+        <module>com.esri.arcgisruntime.opensourceapps.workbench.stage</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.takari</groupId>
+                <artifactId>maven</artifactId>
+                <version>0.7.4</version>
+                <configuration>
+                    <maven>3.6.1</maven>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.VBox?>
+<SplitPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.esri.arcgisruntime.opensourceapps.workbench.project.perspective.PerspectiveController">
+    <TabPane tabClosingPolicy="UNAVAILABLE">
+        <Tab text="Files">
+            <VBox>
+                <TreeView fx:id="treeView" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+    <TabPane fx:id="tabPane"/>
+</SplitPane>
