@@ -1,6 +1,7 @@
 package com.esri.arcgisruntime.opensourceapps.workbench.perspective.service;
 
-import javafx.beans.property.*;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.Node;
 
 public class Perspective {

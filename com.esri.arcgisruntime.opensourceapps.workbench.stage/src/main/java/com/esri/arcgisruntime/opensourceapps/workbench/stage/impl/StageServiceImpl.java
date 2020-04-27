@@ -18,49 +18,49 @@ import org.osgi.service.component.annotations.Component;
 @Component(immediate = true)
 public class StageServiceImpl implements StageService {
 
-  private final ReadOnlyObjectWrapper<Stage> stage = new ReadOnlyObjectWrapper<>(null);
+    private final ReadOnlyObjectWrapper<Stage> stage = new ReadOnlyObjectWrapper<>(null);
 
-  @Activate
-  private void activate() {
-    try {
-      Platform.startup(() -> {
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(new Scene(new StackPane()));
-        primaryStage.setOnCloseRequest(windowEvent -> {
-          Alert closeConfirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you" +
-              " want to exit?");
-          closeConfirmationDialog.setTitle("Exit");
-          closeConfirmationDialog.setHeaderText("");
-          closeConfirmationDialog.showAndWait().ifPresent(buttonType -> {
-            if (buttonType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-              try {
-                Bundle thisBundle = FrameworkUtil.getBundle(Activator.class);
-                if (thisBundle != null) {
-                  thisBundle.getBundleContext().getBundle(0).stop();
-                }
-              } catch (Exception ex) {
-                ex.printStackTrace();
-              }
-            } else {
-              windowEvent.consume();
-            }
-          });
-        });
-        primaryStage.show();
-        stage.set(primaryStage);
-      });
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    @Activate
+    private void activate() {
+        try {
+            Platform.startup(() -> {
+                Stage primaryStage = new Stage();
+                primaryStage.setScene(new Scene(new StackPane()));
+                primaryStage.setOnCloseRequest(windowEvent -> {
+                    Alert closeConfirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you" +
+                            " want to exit?");
+                    closeConfirmationDialog.setTitle("Exit");
+                    closeConfirmationDialog.setHeaderText("");
+                    closeConfirmationDialog.showAndWait().ifPresent(buttonType -> {
+                        if (buttonType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                            try {
+                                Bundle thisBundle = FrameworkUtil.getBundle(Activator.class);
+                                if (thisBundle != null) {
+                                    thisBundle.getBundleContext().getBundle(0).stop();
+                                }
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        } else {
+                            windowEvent.consume();
+                        }
+                    });
+                });
+                primaryStage.show();
+                stage.set(primaryStage);
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
-  }
 
-  @Override
-  public Stage getStage() {
-    return stageProperty().get();
-  }
+    @Override
+    public Stage getStage() {
+        return stageProperty().get();
+    }
 
-  @Override
-  public ReadOnlyObjectProperty<Stage> stageProperty() {
-    return stage.getReadOnlyProperty();
-  }
+    @Override
+    public ReadOnlyObjectProperty<Stage> stageProperty() {
+        return stage.getReadOnlyProperty();
+    }
 }

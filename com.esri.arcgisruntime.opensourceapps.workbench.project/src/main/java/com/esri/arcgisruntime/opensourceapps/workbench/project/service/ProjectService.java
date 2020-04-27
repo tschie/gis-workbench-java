@@ -6,6 +6,8 @@ import java.io.File;
 
 public interface ProjectService {
     File getProject();
+
     ReadOnlyObjectProperty<File> projectProperty();
+
     void requestChangeProject();
 }

@@ -11,7 +11,8 @@ public class PerspectiveServiceModule extends AbstractModule {
         this.perspectiveService = perspectiveService;
     }
 
-    @Override protected void configure() {
+    @Override
+    protected void configure() {
         bind(PerspectiveService.class).toInstance(perspectiveService);
     }
 }

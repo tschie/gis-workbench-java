@@ -11,7 +11,8 @@ public class TabServiceModule extends AbstractModule {
         this.tabService = tabService;
     }
 
-    @Override protected void configure() {
+    @Override
+    protected void configure() {
         bind(TabService.class).toInstance(tabService);
     }
 }

@@ -11,7 +11,8 @@ public class ProjectServiceModule extends AbstractModule {
         this.projectService = projectService;
     }
 
-    @Override protected void configure() {
+    @Override
+    protected void configure() {
         bind(ProjectService.class).toInstance(projectService);
     }
 }

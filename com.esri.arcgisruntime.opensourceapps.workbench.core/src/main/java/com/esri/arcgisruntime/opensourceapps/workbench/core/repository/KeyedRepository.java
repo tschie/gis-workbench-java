@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public interface KeyedRepository<K, T> extends Repository<T> {
     T getByKey(K key);
+
     Set<Map.Entry<K, T>> getAllEntries();
 
     @Override

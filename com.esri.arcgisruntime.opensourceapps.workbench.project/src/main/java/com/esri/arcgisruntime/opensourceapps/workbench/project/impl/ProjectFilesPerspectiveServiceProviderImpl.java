@@ -27,20 +27,16 @@ import java.util.Arrays;
 @Component(immediate = true)
 public class ProjectFilesPerspectiveServiceProviderImpl implements PerspectiveProvider {
 
-    @Reference
-    private ProjectService projectService;
-
-    @Reference
-    private SelectionService selectionService;
-
-    @Reference
-    private TabService tabService;
-
-    @Inject
-    private FXMLLoader fxmlLoader;
-
     private final ReadOnlyObjectWrapper<Perspective> perspective = new ReadOnlyObjectWrapper<>(new Perspective(
             "Project", new StackPane()));
+    @Reference
+    private ProjectService projectService;
+    @Reference
+    private SelectionService selectionService;
+    @Reference
+    private TabService tabService;
+    @Inject
+    private FXMLLoader fxmlLoader;
 
     @Activate
     private void activate() {

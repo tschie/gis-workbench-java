@@ -1,6 +1,5 @@
 package com.esri.arcgisruntime.opensourceapps.workbench.project.impl;
 
-import com.esri.arcgisruntime.opensourceapps.workbench.perspective.service.PerspectiveProvider;
 import com.esri.arcgisruntime.opensourceapps.workbench.perspective.service.PerspectiveService;
 import com.esri.arcgisruntime.opensourceapps.workbench.preferences.service.PreferencesService;
 import com.esri.arcgisruntime.opensourceapps.workbench.project.service.ProjectService;
@@ -10,7 +9,6 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.osgi.service.component.annotations.Activate;
@@ -23,16 +21,13 @@ import java.util.prefs.Preferences;
 @Component(immediate = true)
 public class ProjectServiceImpl implements ProjectService {
 
+    private final ReadOnlyObjectWrapper<File> project = new ReadOnlyObjectWrapper<>(null);
     @Reference
     private StageService stageService;
-
     @Reference
     private PreferencesService preferencesService;
-
     @Reference
     private PerspectiveService perspectiveService;
-
-    private final ReadOnlyObjectWrapper<File> project = new ReadOnlyObjectWrapper<>(null);
 
     @Activate
     private void activate() {
@@ -68,6 +63,11 @@ public class ProjectServiceImpl implements ProjectService {
         });
     }
 
+    @Override
+    public File getProject() {
+        return projectProperty().get();
+    }
+
     private void setProject(File file) {
         preferencesService.getPreferences().put("project", file.getAbsolutePath());
         project.set(file);
@@ -84,11 +84,6 @@ public class ProjectServiceImpl implements ProjectService {
                 }
             });
         }
-    }
-
-    @Override
-    public File getProject() {
-        return projectProperty().get();
     }
 
     @Override

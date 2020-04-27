@@ -22,13 +22,11 @@ import java.util.stream.Collectors;
 @Component(immediate = true)
 public class FileMenuProviderImpl implements MenuProvider {
 
+    private final ReadOnlyObjectWrapper<Menu> fileMenu = new ReadOnlyObjectWrapper<>(new Menu("File"));
     @Reference
     private StageService stageService;
-
     @Reference
     private FileMenuService fileMenuService;
-
-    private final ReadOnlyObjectWrapper<Menu> fileMenu = new ReadOnlyObjectWrapper<>(new Menu("File"));
 
     @Activate
     private void activate() {

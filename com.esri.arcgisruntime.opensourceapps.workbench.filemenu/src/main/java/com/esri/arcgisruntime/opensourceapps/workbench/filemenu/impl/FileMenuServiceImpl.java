@@ -27,7 +27,7 @@ public class FileMenuServiceImpl implements FileMenuService {
     public void removeFileMenuItemProvider(FileMenuItemProvider fileMenuItemProvider) {
         fileMenuItemProviders.remove(fileMenuItemProvider);
     }
-    
+
     @Override
     public ReadOnlyListProperty<FileMenuItemProvider> observableListProperty() {
         return fileMenuItemProviders.getReadOnlyProperty();

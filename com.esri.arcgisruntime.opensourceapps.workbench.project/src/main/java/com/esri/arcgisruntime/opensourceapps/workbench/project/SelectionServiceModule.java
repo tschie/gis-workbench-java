@@ -11,7 +11,8 @@ public class SelectionServiceModule extends AbstractModule {
         this.selectionService = selectionService;
     }
 
-    @Override protected void configure() {
+    @Override
+    protected void configure() {
         bind(SelectionService.class).toInstance(selectionService);
     }
 }

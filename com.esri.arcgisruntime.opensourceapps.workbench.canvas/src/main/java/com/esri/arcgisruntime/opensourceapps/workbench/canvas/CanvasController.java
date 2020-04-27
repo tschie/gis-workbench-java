@@ -4,7 +4,6 @@ import com.esri.arcgisruntime.opensourceapps.workbench.menu.service.MenuProvider
 import com.esri.arcgisruntime.opensourceapps.workbench.menu.service.MenuService;
 import com.esri.arcgisruntime.opensourceapps.workbench.perspective.service.PerspectiveService;
 import com.google.inject.Inject;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuBar;

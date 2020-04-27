@@ -14,10 +14,9 @@ import java.io.IOException;
 
 public class FileTab extends Tab {
 
+    private final File file;
     @FXML
     private TextFlow textFlow;
-
-    private final File file;
 
     public FileTab(File file) {
         super();

@@ -13,14 +13,11 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Stage;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -29,14 +26,12 @@ import java.util.stream.Collectors;
 @Component(immediate = true)
 public class PerspectiveServiceImpl implements PerspectiveService {
 
-    @Reference
-    private StageService stageService;
-
     private final ReadOnlyListWrapper<PerspectiveProvider> perspectiveProviders = new ReadOnlyListWrapper<>(
             FXCollections.observableList(new CopyOnWriteArrayList<>())
     );
-
     private final ObjectProperty<Perspective> currentPerspective = new SimpleObjectProperty<>(null);
+    @Reference
+    private StageService stageService;
 
     @Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
     public void addPerspectiveProvider(PerspectiveProvider perspectiveProvider) {
@@ -55,6 +50,10 @@ public class PerspectiveServiceImpl implements PerspectiveService {
     @Override
     public Perspective getCurrentPerspective() {
         return currentPerspectiveProperty().get();
+    }
+
+    private void setCurrentPerspective(Perspective perspective) {
+        Platform.runLater(() -> currentPerspective.set(perspective));
     }
 
     @Override
@@ -91,9 +90,5 @@ public class PerspectiveServiceImpl implements PerspectiveService {
                 });
             }
         }
-    }
-
-    private void setCurrentPerspective(Perspective perspective) {
-        Platform.runLater(() -> currentPerspective.set(perspective));
     }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface TabService {
     void addTab(Tab tab);
+
     List<Tab> getTabs();
+
     ReadOnlyListProperty<Tab> tabsProperty();
 }

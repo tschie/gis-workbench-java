@@ -11,7 +11,8 @@ public class MenuServiceModule extends AbstractModule {
         this.menuService = menuService;
     }
 
-    @Override protected void configure() {
+    @Override
+    protected void configure() {
         bind(MenuService.class).toInstance(menuService);
     }
 }

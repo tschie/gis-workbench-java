@@ -5,6 +5,8 @@ import javafx.beans.property.ObjectProperty;
 
 public interface PerspectiveService extends ObservableRepository<PerspectiveProvider> {
     Perspective getCurrentPerspective();
+
     ObjectProperty<Perspective> currentPerspectiveProperty();
+
     void requestPerspective(String name);
 }
