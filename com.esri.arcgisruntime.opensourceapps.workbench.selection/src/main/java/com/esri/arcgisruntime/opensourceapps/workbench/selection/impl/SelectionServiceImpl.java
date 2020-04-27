@@ -8,20 +8,20 @@ import org.osgi.service.component.annotations.Component;
 @Component(immediate = true)
 public class SelectionServiceImpl implements SelectionService {
 
-  private final ReadOnlyObjectWrapper<Object> selection = new ReadOnlyObjectWrapper<>(null);
+    private final ReadOnlyObjectWrapper<Object> selection = new ReadOnlyObjectWrapper<>(null);
 
-  @Override
-  public Object getSelection() {
-    return selectionProperty().get();
-  }
+    @Override
+    public Object getSelection() {
+        return selectionProperty().get();
+    }
 
-  @Override
-  public void setSelection(Object object) {
-    selection.set(object);
-  }
+    @Override
+    public void setSelection(Object object) {
+        selection.set(object);
+    }
 
-  @Override
-  public ReadOnlyObjectProperty<Object> selectionProperty() {
-    return selection.getReadOnlyProperty();
-  }
+    @Override
+    public ReadOnlyObjectProperty<Object> selectionProperty() {
+        return selection.getReadOnlyProperty();
+    }
 }
