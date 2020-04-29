@@ -1,10 +1,10 @@
-# workbench-java
+# gis-workbench-java
 
-Workbench is a generic desktop application platform for Java using JavaFX and OSGi.
+GIS Workbench is a GIS desktop application platform for Java using JavaFX, OSGi, and the [ArcGIS Runtime SDK for Java](https://developers.arcgis.com/java/latest/).
 
-For more information, please refer to the repository [Wiki](https://github.com/ArcGIS/workbench-java/wiki).
+For more information, please refer to the repository [wiki](https://github.com/ArcGIS/gis-workbench-java/wiki).
 
-![Screenshot](https://raw.github.com/ArcGIS/workbench-java/master/workbench-java.png)
+![Screenshot](https://github.com/ArcGIS/gis-workbench-java/raw/master/gis-workbench-java.png)
 
 ## Features
 * Dynamic plugin architecture
@@ -18,7 +18,7 @@ For more information, please refer to the repository [Wiki](https://github.com/A
 
 ### Install
 
-Download the installer from the [releases](https://github.com/ArcGIS/workbench-java/releases) page and follow the installer instructions.
+Download the installer from the [releases](https://github.com/ArcGIS/gis-workbench-java/releases) page and follow the installer instructions.
 
 ### Build
 
@@ -66,4 +66,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-A copy of the license is available in the repository's [license.txt]( https://raw.github.com/ArcGIS/workbench-java/master/license.txt) file.
+A copy of the license is available in the repository's [license.txt]( https://github.com/ArcGIS/gis-workbench-java/raw/master/license.txt) file.
