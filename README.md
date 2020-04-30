@@ -2,6 +2,8 @@
 
 GIS Workbench is a GIS desktop application platform for Java using JavaFX, OSGi, and the [ArcGIS Runtime SDK for Java](https://developers.arcgis.com/java/latest/).
 
+DISCLAIMER: GIS Workbench is still in development and is not production ready.
+
 For more information, please refer to the repository [wiki](https://github.com/ArcGIS/gis-workbench-java/wiki).
 
 ![Screenshot](https://github.com/ArcGIS/gis-workbench-java/raw/master/gis-workbench-java.png)
