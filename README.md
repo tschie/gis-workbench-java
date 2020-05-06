@@ -1,5 +1,7 @@
 # gis-workbench-java
 
+![Maven build](https://github.com/Esri/arcgis-runtime-samples-java/workflows/Continuous%20Integration/badge.svg)
+
 GIS Workbench is a GIS desktop application platform for Java using JavaFX, OSGi, and the [ArcGIS Runtime SDK for Java](https://developers.arcgis.com/java/latest/).
 
 DISCLAIMER: GIS Workbench is still in development and is not production ready.
