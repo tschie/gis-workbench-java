@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.esri.arcgisruntime.opensourceapps</groupId>
-    <artifactId>workbench-java</artifactId>
+    <artifactId>gis-workbench-java</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
