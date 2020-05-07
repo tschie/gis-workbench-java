@@ -36,6 +36,13 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>github-javafx-osgi</id>
+            <url>https://maven.pkg.github.com/tschie/javafx-osgi</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
