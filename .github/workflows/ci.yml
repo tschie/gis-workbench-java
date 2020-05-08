@@ -32,4 +32,4 @@ jobs:
       name: Upload Artifact
       with:
         name: ${{ matrix.platform }}-binary
-        path: ./workench/target/*Workbench*
+        path: workench/target/*Workbench*
