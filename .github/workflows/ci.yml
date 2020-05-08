@@ -32,4 +32,4 @@ jobs:
       name: Upload Artifact
       with:
         name: ${{ matrix.platform }}-binary
-        path: "${{ GITHUB_WORKSPACE }}/workench/target/GIS Workbench-1.0.0.msi"
+        path: $GITHUB_WORKSPACE/workench/target/GIS Workbench-1.0.0.msi"
