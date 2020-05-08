@@ -26,12 +26,18 @@
     <artifactId>core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>github-javafx-osgi</id>
+            <url>https://maven.pkg.github.com/tschie/javafx-osgi</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
-            <groupId>org.openjfx</groupId>
+            <groupId>io.github.tschie.javafx-osgi</groupId>
             <artifactId>javafx-base-osgi</artifactId>
             <version>11.0.0</version>
-            <classifier>win</classifier>
         </dependency>
     </dependencies>
 

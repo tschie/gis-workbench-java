@@ -25,6 +25,13 @@
     <artifactId>all</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>github-javafx-osgi</id>
+            <url>https://maven.pkg.github.com/tschie/javafx-osgi</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.esri.arcgisruntime.opensourceapps.workbench</groupId>
