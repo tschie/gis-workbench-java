@@ -38,7 +38,6 @@
         <module>com.esri.arcgisruntime.opensourceapps.workbench.perspective</module>
         <module>com.esri.arcgisruntime.opensourceapps.workbench.preferences</module>
         <module>com.esri.arcgisruntime.opensourceapps.workbench.project</module>
-        <module>com.esri.arcgisruntime.opensourceapps.workbench.scenic-view</module>
         <module>com.esri.arcgisruntime.opensourceapps.workbench.selection</module>
         <module>com.esri.arcgisruntime.opensourceapps.workbench.splash</module>
         <module>com.esri.arcgisruntime.opensourceapps.workbench.stage</module>
