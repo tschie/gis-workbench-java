@@ -376,7 +376,7 @@
                                         <argument>--app-version</argument>
                                         <argument>1.0.0</argument>
                                         <argument>--app-image</argument>
-                                        <argument>${project.build.directory}/${project.name}</argument>
+                                        <argument>${project.build.directory}/${project.name}.app</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -470,17 +470,6 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>ls</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>ls</executable>
-                                    <workingDirectory>${project.build.directory}</workingDirectory>
-                                </configuration>
-                            </execution>
-                            <execution>
                                 <id>jpackage-installer</id>
                                 <phase>verify</phase>
                                 <goals>
@@ -500,6 +489,17 @@
                                         <argument>${project.build.directory}/${project.name}</argument>
                                         <argument>--linux-shortcut</argument>
                                     </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>ls</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>ls</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
                                 </configuration>
                             </execution>
                         </executions>
