@@ -23,11 +23,11 @@ jobs:
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
     - name: Cache Maven packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ matrix.platform }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ matrix.platform }}-m2
+      uses: actions/cache@v1
+      with:
+        path: ~/.m2
+        key: ${{ matrix.platform }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ matrix.platform }}-m2
     - name: Build with Maven
       run: mvn verify
       env:
