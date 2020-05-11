@@ -448,7 +448,7 @@
                                 </goals>
                                 <configuration>
                                     <executable>ls</executable>
-                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <workingDirectory>${project.build.directory}/jdk-11.0.7+10</workingDirectory>
                                 </configuration>
                             </execution>
                             <execution>
