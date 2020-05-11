@@ -24,7 +24,8 @@ Download the installer from the [releases](https://github.com/ArcGIS/gis-workben
 
 ### Build
 
-To build the native installer/executable, `cd` into workbench and run `mvnw verify` on Windows or `./mvnw verify` on Mac/Linux. See workbench/target for output.
+To build the native installer/executable, `cd` into workbench and run `mvnw verify` on Windows or `./mvnw verify` on
+ Mac/Linux. See workbench/target/installer for output.
 
 ### Test
 

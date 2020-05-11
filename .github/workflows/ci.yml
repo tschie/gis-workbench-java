@@ -38,4 +38,4 @@ jobs:
       name: Upload Artifact
       with:
         name: gis-workbench-${{ matrix.platform }}
-        path: 'workbench/target/*[Ww]orkbench-?_?*'
+        path: 'workbench/target/installer/*'
