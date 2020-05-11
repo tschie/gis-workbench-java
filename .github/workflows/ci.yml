@@ -32,4 +32,4 @@ jobs:
       name: Upload Artifact
       with:
         name: gis-workbench
-        path: workbench/target/gis-workbench/*
+        path: 'workbench/target/GIS Workbench*'
