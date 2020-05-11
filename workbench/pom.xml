@@ -320,6 +320,17 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <executions>
                             <execution>
+                                <id>ls</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>ls</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                </configuration>
+                            </execution>
+                            <execution>
                                 <id>jpackage-image</id>
                                 <phase>package</phase>
                                 <goals>
@@ -429,6 +440,17 @@
                         <version>1.6.0</version>
                         <groupId>org.codehaus.mojo</groupId>
                         <executions>
+                            <execution>
+                                <id>ls</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>ls</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                </configuration>
+                            </execution>
                             <execution>
                                 <id>jpackage-image</id>
                                 <phase>package</phase>
