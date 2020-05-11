@@ -29,7 +29,12 @@ jobs:
         MAVEN_USERNAME: tschie
         MAVEN_PASSWORD: ${{ github.token }}
     - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: debug-target-${{ matrix.platform }}
+        path: path/to/artifact/
+    - uses: actions/upload-artifact@v2
       name: Upload Artifact
       with:
-        name: gis-workbench
+        name: gis-workbench-${{ matrix.platform }}
         path: 'workbench/target/GIS Workbench*'
