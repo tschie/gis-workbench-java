@@ -351,7 +351,7 @@
                                         <argument>--main-class</argument>
                                         <argument>org.apache.karaf.main.Main</argument>
                                         <argument>--runtime-image</argument>
-                                        <argument>"${project.build.directory}/jdk-11.0.7+10"</argument>
+                                        <argument>"${project.build.directory}/jdk-11.0.7+10/Contents/Home"</argument>
                                         <argument>--icon</argument>
                                         <argument>"${project.basedir}/icon.icns"</argument>
                                         <argument>--java-options</argument>
