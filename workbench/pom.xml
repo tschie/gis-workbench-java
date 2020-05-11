@@ -446,7 +446,7 @@
                                     <goal>cp</goal>
                                 </goals>
                                 <configuration>
-                                    <from>${project.build.directory}/jdk-11.0.7+10.tar.gz</from>
+                                    <from>${project.build.directory}/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz</from>
                                     <to>${project.build.directory}</to>
                                 </configuration>
                             </execution>
