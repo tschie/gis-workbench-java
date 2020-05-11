@@ -320,17 +320,6 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <executions>
                             <execution>
-                                <id>ls</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>ls</executable>
-                                    <workingDirectory>${project.build.directory}</workingDirectory>
-                                </configuration>
-                            </execution>
-                            <execution>
                                 <id>jpackage-image</id>
                                 <phase>package</phase>
                                 <goals>
@@ -357,6 +346,17 @@
                                         <argument>--java-options</argument>
                                         <argument>"-Dcom.sun.management.jmxremote -Dkaraf.home=$ROOTDIR\karaf --module-path=$ROOTDIR\javafx-sdk-11.0.2\lib --add-modules=javafx.controls,javafx.graphics,javafx.fxml -splash:$ROOTDIR/app/splash.png"</argument>
                                     </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>ls</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>ls</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
                                 </configuration>
                             </execution>
                             <execution>
@@ -441,17 +441,6 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <executions>
                             <execution>
-                                <id>ls</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>ls</executable>
-                                    <workingDirectory>${project.build.directory}</workingDirectory>
-                                </configuration>
-                            </execution>
-                            <execution>
                                 <id>jpackage-image</id>
                                 <phase>package</phase>
                                 <goals>
@@ -478,6 +467,17 @@
                                         <argument>--java-options</argument>
                                         <argument>"-Dcom.sun.management.jmxremote -Dkaraf.home=$ROOTDIR\karaf --module-path=$ROOTDIR\javafx-sdk-11.0.2\lib --add-modules=javafx.controls,javafx.graphics,javafx.fxml -splash:$ROOTDIR/lib/app/splash.png"</argument>
                                     </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>ls</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>ls</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
                                 </configuration>
                             </execution>
                             <execution>
