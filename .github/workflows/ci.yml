@@ -32,4 +32,4 @@ jobs:
       name: Upload Artifact
       with:
         name: gis-workbench
-        path: '${{ github.workspace }}/workbench/target/gis-workbench/GIS Workbench**'
+        path: workbench/target/gis-workbench/*
