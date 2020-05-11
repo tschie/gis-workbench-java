@@ -31,5 +31,5 @@ jobs:
     - uses: actions/upload-artifact@v2
       name: Upload Artifact
       with:
-        name: binary
-        path: ${{ github.workspace }}/workbench/target/gis-workbench/
+        name: gis-workbench
+        path: ${{ github.workspace }}/workbench/target/gis-workbench/GIS Workbench*
