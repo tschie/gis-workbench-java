@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<Menu xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.esri.arcgisruntime.opensourceapps.gisworkbench.app.controller.menus.ViewMenuController"
+      text="View">
+    <fx:include source="perspectiveMenu.fxml"/>
+    <SeparatorMenuItem/>
+    <Menu text="Panels"/>
+    <Menu text="Toolbars"/>
+</Menu>

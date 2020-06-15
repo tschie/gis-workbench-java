@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<Menu xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="menu"
+      fx:controller="com.esri.arcgisruntime.opensourceapps.gisworkbench.app.controller.menus.FileMenuController"
+      text="File">
+    <!--<Menu fx:id="newMenu" text="New">
+        <MenuItem text="Project..." onAction="#handleNewProject"/>
+        <SeparatorMenuItem/>
+    </Menu>-->
+    <MenuItem text="Open..." onAction="#handleOpen"/>
+    <SeparatorMenuItem/>
+    <fx:include source="importMenu.fxml"/>
+    <SeparatorMenuItem/>
+    <MenuItem text="Settings..." onAction="#handleSettings"/>
+    <SeparatorMenuItem/>
+    <MenuItem text="Exit" onAction="#handleExit"/>
+</Menu>

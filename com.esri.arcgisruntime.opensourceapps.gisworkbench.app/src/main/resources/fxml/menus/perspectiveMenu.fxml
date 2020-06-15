@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<Menu xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="menu"
+      fx:controller="com.esri.arcgisruntime.opensourceapps.gisworkbench.app.controller.menus.PerspectiveMenuController"
+      text="Perspective">
+
+</Menu>
