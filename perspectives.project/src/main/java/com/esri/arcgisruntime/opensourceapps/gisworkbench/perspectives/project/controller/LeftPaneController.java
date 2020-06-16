@@ -4,6 +4,7 @@ import com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives.project.v
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.view.service.ViewProviderService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.view.service.ViewService;
 import com.google.inject.Inject;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
@@ -35,7 +36,7 @@ public class LeftPaneController {
                             .map(this::createViewTab)
                             .forEach(tab -> tabPane.getTabs().add(tab));
                 } else if (change.wasRemoved()) {
-                    tabPane.getTabs().removeIf(tab -> change.getRemoved().contains(tab.getUserData()));
+                    Platform.runLater(() ->  tabPane.getTabs().removeIf(tab -> change.getRemoved().contains(tab.getUserData())));
                 }
             }
         });

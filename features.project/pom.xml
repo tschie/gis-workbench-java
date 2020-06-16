@@ -43,6 +43,16 @@
             <artifactId>files-view</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
+            <artifactId>editor-view</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors</groupId>
+            <artifactId>text-editor</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

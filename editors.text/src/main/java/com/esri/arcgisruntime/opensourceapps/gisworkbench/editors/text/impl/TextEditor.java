@@ -17,12 +17,17 @@ public class TextEditor extends Editor {
     }
 
     @Override
+    public String getName() {
+        return "Text";
+    }
+
+    @Override
     public Node getNode() {
         return node;
     }
 
     @Override
     public String getDisplayName() {
-        return "File";
+        return ((File) getData()).getName();
     }
 }

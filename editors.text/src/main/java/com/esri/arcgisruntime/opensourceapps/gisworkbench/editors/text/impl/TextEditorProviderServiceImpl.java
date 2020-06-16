@@ -1,6 +1,5 @@
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.impl;
 
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.view.TextDisplay;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.views.editor.service.Editor;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.views.editor.service.EditorProviderService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
@@ -19,7 +18,7 @@ public class TextEditorProviderServiceImpl implements EditorProviderService {
     @Override
     public Editor create(Workspace workspace, String id, Object data) {
         if (data instanceof File) {
-            return new TextEditor(workspace, id, new TextDisplay((File) data));
+            return new TextEditor(workspace, id, data);
         } else {
             return null;
         }
@@ -27,6 +26,6 @@ public class TextEditorProviderServiceImpl implements EditorProviderService {
 
     @Override
     public boolean supports(Object o) {
-        return false;
+        return o instanceof File && ((File) o).getName().endsWith(".txt");
     }
 }

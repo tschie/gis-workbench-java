@@ -32,12 +32,13 @@ import java.io.IOException;
 
 public class FileTreeCell extends TreeCell<File> {
 
-    private final Workspace workspace;
-    private final EventService eventService;
-
     public FileTreeCell(Workspace workspace, EventService eventService) {
-        this.workspace = workspace;
-        this.eventService = eventService;
+        setOnMouseClicked(mouseEvent -> {
+            File file = this.getTreeItem().getValue();
+            if (file != null && mouseEvent.getButton() == MouseButton.PRIMARY && mouseEvent.getClickCount() == 2) {
+                eventService.emit(new OpenEvent(file, workspace));
+            }
+        });
     }
 
     @Override
@@ -58,11 +59,7 @@ public class FileTreeCell extends TreeCell<File> {
             } catch (IOException ex) {
                 // do nothing
             }
-            setOnMouseClicked(mouseEvent -> {
-                if (mouseEvent.getButton() == MouseButton.PRIMARY && mouseEvent.getClickCount() == 2) {
-                    eventService.emit(new OpenEvent(file, workspace));
-                }
-            });
+
         } else {
             setText(null);
             setGraphic(null);

@@ -23,7 +23,13 @@ public abstract class Editor {
         return id;
     }
 
+    public abstract String getName();
+
     public abstract Node getNode();
+
+    public Object getData() {
+        return data;
+    }
 
     public abstract String getDisplayName();
 }

@@ -13,7 +13,7 @@ public class EditorPaneController {
     @FXML
     private StackPane stackPane;
 
-    @FXML
+    @Inject
     private ProjectPerspective projectPerspective;
 
     @Inject

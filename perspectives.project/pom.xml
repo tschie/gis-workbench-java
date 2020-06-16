@@ -110,7 +110,6 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Bundle-Activator>com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives.project.Activator</Bundle-Activator>
-                        <Export-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives.project.service</Export-Package>
                         <Private-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives.project.*</Private-Package>
                         <Service-Component>*</Service-Component>
                     </instructions>
