@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@Component(immediate = true, property = {"name=editor"})
+@Component(immediate = true, property = {"name=Editor"})
 public class EditorViewProviderServiceImpl implements ViewProviderService {
 
     private final ReadOnlyListWrapper<EditorProviderService> editorProviderServices = new ReadOnlyListWrapper<>(

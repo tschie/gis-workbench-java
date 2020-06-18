@@ -1,6 +1,8 @@
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.views.editor.service;
 
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.Node;
 
 public abstract class Editor {
@@ -8,6 +10,7 @@ public abstract class Editor {
     private final Workspace workspace;
     private final String id;
     private final Object data;
+    protected ReadOnlyStringWrapper displayName = new ReadOnlyStringWrapper("");
 
     public Editor(Workspace workspace, String id, Object data) {
         this.workspace = workspace;
@@ -31,5 +34,15 @@ public abstract class Editor {
         return data;
     }
 
-    public abstract String getDisplayName();
+    public String getDisplayName() {
+        return displayNameProperty().get();
+    }
+
+    public ReadOnlyStringProperty displayNameProperty() {
+        return displayName.getReadOnlyProperty();
+    }
+
+    protected void setDisplayName(String displayName) {
+        this.displayName.set(displayName);
+    }
 }

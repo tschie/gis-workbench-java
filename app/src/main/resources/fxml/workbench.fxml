@@ -16,17 +16,22 @@
   the License.
 
   -->
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
-<StackPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.esri.arcgisruntime.opensourceapps.gisworkbench.app.controller.WorkbenchController">
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <BorderPane>
         <top>
-            <fx:include source="menus/menu.fxml"/>
+            <fx:include source="menu.fxml"/>
         </top>
         <center>
-            <StackPane fx:id="stackPane"/>
+            <SplitPane SplitPane.resizableWithParent="true">
+                <fx:include source="panes/leftPane.fxml"/>
+                <SplitPane SplitPane.resizableWithParent="true">
+                    <fx:include source="editor.fxml"/>
+                    <fx:include source="panes/rightPane.fxml"/>
+                </SplitPane>
+            </SplitPane>
         </center>
     </BorderPane>
 </StackPane>

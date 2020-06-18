@@ -1,9 +1,10 @@
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.app.impl;
 
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.Activator;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.PerspectiveService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.WorkspaceService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.view.Workbench;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.perspective.service.PerspectiveService;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.view.service.ViewService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
 import com.google.inject.Inject;
 import javafx.application.Platform;
@@ -32,6 +33,9 @@ public class WorkbenchService {
 
     @Reference
     private PerspectiveService perspectiveService;
+
+    @Reference
+    private ViewService viewService;
 
     @Inject
     private FXMLLoader fxmlLoader;
@@ -72,10 +76,10 @@ public class WorkbenchService {
     }
 
     private Workbench createWorkbench(Workspace workspace) {
-        Workbench workbench = new Workbench(Objects.requireNonNull(workspace), workspaceService, perspectiveService);
+        Workbench workbench = new Workbench(Objects.requireNonNull(workspace), workspaceService, perspectiveService,
+                viewService);
         workbench.setTitle(workspace.getRootDirectory().getName() + " - " + workspace.getRootDirectory().getAbsolutePath());
         workbench.setOnCloseRequest(windowEvent -> {
-            System.out.println(workbenches.size());
             if (workbenches.size() == 1) {
                 Alert closeConfirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you" +
                         " want to exit?");
@@ -103,12 +107,10 @@ public class WorkbenchService {
     }
 
     private Workbench createEmptyWorkbench() {
-        Workbench workbench = new Workbench(null, workspaceService, perspectiveService);
+        Workbench workbench = new Workbench(null, workspaceService, perspectiveService, viewService);
         workbench.setTitle("GIS Workbench");
         workbench.setOnCloseRequest(windowEvent -> {
-            System.out.println("Exiting");
-            Alert closeConfirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you" +
-                    " want to exit?");
+            Alert closeConfirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
             closeConfirmationDialog.setTitle("Exit");
             closeConfirmationDialog.setHeaderText("");
             closeConfirmationDialog.showAndWait().ifPresent(buttonType -> {

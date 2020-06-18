@@ -35,7 +35,7 @@
     <dependencies>
         <dependency>
             <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives</groupId>
-            <artifactId>project-perspective</artifactId>
+            <artifactId>files-perspective</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -13,7 +13,9 @@ public class TextEditor extends Editor {
 
     public TextEditor(Workspace workspace, String id, Object data) {
         super(workspace, id, data);
-        this.node = new TextDisplay((File) data);
+        File file = (File) data;
+        this.node = new TextDisplay(file);
+        setDisplayName(file.getName());
     }
 
     @Override
@@ -24,10 +26,5 @@ public class TextEditor extends Editor {
     @Override
     public Node getNode() {
         return node;
-    }
-
-    @Override
-    public String getDisplayName() {
-        return ((File) getData()).getName();
     }
 }

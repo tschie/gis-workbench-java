@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@Component
+@Component(immediate = true)
 public class ViewServiceImpl implements ViewService {
 
     private final ReadOnlyListWrapper<ViewProviderService> viewProviderServices = new ReadOnlyListWrapper<>(

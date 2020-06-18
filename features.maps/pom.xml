@@ -21,8 +21,8 @@
 
     <packaging>feature</packaging>
 
-    <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-    <artifactId>com.esri.arcgisruntime.opensourceapps.gisworkbench.feature</artifactId>
+    <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.features</groupId>
+    <artifactId>maps</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <repositories>
@@ -34,23 +34,23 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>workbench</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives</groupId>
+            <artifactId>maps-perspective</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.workbench</groupId>
-            <artifactId>splash</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
+            <artifactId>webmaps-view</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>project-perspective</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
             <artifactId>editor-view</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors</groupId>
+            <artifactId>map-editor</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

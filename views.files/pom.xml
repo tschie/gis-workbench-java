@@ -113,7 +113,6 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Bundle-Activator>com.esri.arcgisruntime.opensourceapps.gisworkbench.views.files.Activator</Bundle-Activator>
-                        <Export-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.views.files.service</Export-Package>
                         <Private-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.views.files.*</Private-Package>
                         <Service-Component>*</Service-Component>
                     </instructions>

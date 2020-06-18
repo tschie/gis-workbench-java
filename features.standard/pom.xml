@@ -47,6 +47,13 @@
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
+        <dependency>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.features</groupId>
+            <artifactId>maps</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,19 +1,26 @@
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.app.view;
 
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.Activator;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.model.Layout;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.Perspective;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.PerspectiveServiceModule;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.ViewServiceModule;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.WorkbenchModule;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.WorkspaceServiceModule;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.PerspectiveProviderService;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.PerspectiveService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.WorkspaceService;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.perspective.service.PerspectiveProviderService;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.perspective.service.PerspectiveService;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.view.service.ViewService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.xml.XmlFileSerializer;
 import com.gluonhq.ignite.guice.GuiceContext;
 import com.google.inject.Inject;
 import javafx.beans.Observable;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,11 +28,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.osgi.framework.FrameworkUtil;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -41,27 +47,28 @@ public class Workbench extends Stage {
 
     private final Workspace workspace;
 
-    private final ReadOnlyObjectWrapper<PerspectiveProviderService> perspectiveProviderServiceWrapper = new ReadOnlyObjectWrapper<>(null);
+    private final ObservableList<Perspective> customPerspectives = FXCollections.observableArrayList();
 
-    private final PerspectiveService perspectiveService;
+    private final ObjectProperty<Perspective> perspective = new SimpleObjectProperty<>(null);
 
-    public Workbench(Workspace workspace, WorkspaceService workspaceService, PerspectiveService perspectiveService) {
+    public Workbench(
+            Workspace workspace,
+            WorkspaceService workspaceService,
+            PerspectiveService perspectiveService,
+            ViewService viewService
+    ) {
         super();
         this.workspace = workspace;
-        this.perspectiveService = perspectiveService;
 
         // injects an fxmlLoader containing the following modules
         GuiceContext guiceContext = new GuiceContext(this, () -> Arrays.asList(
                 new WorkbenchModule(this),
                 new WorkspaceServiceModule(workspaceService),
-                new PerspectiveServiceModule(perspectiveService)
+                new PerspectiveServiceModule(perspectiveService),
+                new ViewServiceModule(viewService)
         ));
         guiceContext.init();
 
-        initialize();
-    }
-
-    private void initialize() {
         // initialize scene from FXML
         fxmlLoader.setClassLoader(Activator.class.getClassLoader());
         fxmlLoader.setLocation(FrameworkUtil.getBundle(Activator.class).getResource("/fxml/workbench.fxml"));
@@ -89,75 +96,94 @@ public class Workbench extends Stage {
         }).filter(Objects::nonNull).collect(Collectors.toList());
         getIcons().addAll(icons);
 
-        // set up stage for deserialization/serialization
-        if (workspace != null && workspace.getRootDirectory().exists()) {
-            State deserializedState = deserializeState();
-            if (deserializedState != null) {
-                applyState(deserializedState);
-            } else {
-                setWidth(600);
-                setHeight(400);
-            }
-            xProperty().addListener(this::serializeState);
-            yProperty().addListener(this::serializeState);
-            widthProperty().addListener(this::serializeState);
-            heightProperty().addListener(this::serializeState);
-            maximizedProperty().addListener(this::serializeState);
-        } else {
-            setWidth(600);
-            setHeight(400);
+        // deserialize layout or use default
+        Layout initialLayout = deserializeLayout();
+        if (initialLayout == null || workspace == null) {
+            initialLayout = new Layout();
         }
+
+        // apply layout
+        Layout layout = initialLayout;
+        setWidth(layout.getWidth());
+        setHeight(layout.getHeight());
+        if (workspace != null) {
+            setX(layout.getX());
+            setY(layout.getY());
+            setMaximized(layout.getMaximized());
+            customPerspectives.addAll(layout.getPerspectives());
+            List<Perspective> perspectives = new ArrayList<>();
+            // search provider presets and custom perspectives
+            perspectives.addAll(perspectiveService.getAll().stream().map(PerspectiveProviderService::getPerspective).collect(Collectors.toList()));
+            perspectives.addAll(customPerspectives);
+            // set matching perspective
+            perspectives.stream()
+                    .filter(p -> p.getName().equals(layout.getPerspectiveName()))
+                    .findFirst()
+                    .ifPresent(this.perspective::setValue);
+            perspectiveService.observableListProperty().addListener((ListChangeListener<PerspectiveProviderService>) change -> {
+                while (change.next()) {
+                    change.getAddedSubList().stream()
+                            .map(PerspectiveProviderService::getPerspective)
+                            .filter(p -> p.getName().equals(layout.getPerspectiveName()))
+                            .findFirst()
+                            .ifPresent(this.perspective::setValue);
+                }
+            });
+        }
+
+        // watch layout for changes
+        xProperty().addListener(this::serializeLayout);
+        yProperty().addListener(this::serializeLayout);
+        widthProperty().addListener(this::serializeLayout);
+        heightProperty().addListener(this::serializeLayout);
+        maximizedProperty().addListener(this::serializeLayout);
+        customPerspectives.addListener((ListChangeListener<Perspective>) change -> {
+            while (change.next()) {
+                serializeLayout();
+            }
+        });
+        perspective.addListener(this::serializeLayout);
+    }
+
+    public ObservableList<Perspective> getCustomPerspectives() {
+        return customPerspectives;
+    }
+
+    public Perspective getPerspective() {
+        return perspective.get();
+    }
+
+    public ObjectProperty<Perspective> perspectiveProperty() {
+        return perspective;
+    }
+
+    public void setPerspective(Perspective perspective) {
+        this.perspective.set(perspective);
     }
 
     public Workspace getWorkspace() {
         return workspace;
     }
 
-    public PerspectiveProviderService getPerspectiveProviderService() {
-        return perspectiveProviderServiceProperty().get();
-    }
-
-    public ReadOnlyObjectProperty<PerspectiveProviderService> perspectiveProviderServiceProperty() {
-        return perspectiveProviderServiceWrapper.getReadOnlyProperty();
-    }
-
-    public void setPerspectiveProviderService(PerspectiveProviderService perspectiveProviderService) {
-        perspectiveProviderServiceWrapper.set(perspectiveProviderService);
-    }
-
-    private File getWorkbenchXmlFile() {
+    private File getLayoutXmlFile() {
         assert workspace != null;
-        return getWorkspace().getMetadataDirectory().toPath().resolve(getClass().getPackageName() + ".xml").toFile();
+        return getWorkspace().getMetadataDirectory().toPath().resolve("layout.xml").toFile();
     }
 
-    private State deserializeState() {
-        File windowXmlFile = getWorkbenchXmlFile();
+    private Layout deserializeLayout() {
+        File windowXmlFile = getLayoutXmlFile();
         if (windowXmlFile.exists()) {
-            return xmlFileSerializer.deserialize(windowXmlFile, State.class);
+            return xmlFileSerializer.deserialize(windowXmlFile, Layout.class);
         }
         return null;
     }
 
-    private void applyState(State state) {
-        setX(state.getX());
-        setY(state.getY());
-        setWidth(state.getWidth());
-        setHeight(state.getHeight());
-        setMaximized(state.getMaximized());
-        if (getPerspectiveProviderService() == null || !getPerspectiveProviderService().getName().equals(state.getPerspective())) {
-            perspectiveService.getAll().stream()
-                    .filter(p -> p.getName().equals(state.getPerspective()))
-                    .findFirst()
-                    .ifPresent(perspectiveProviderServiceWrapper::set);
-        }
+    private void serializeLayout(Observable observable) {
+        serializeLayout();
     }
 
-    private void serializeState(Observable observable) {
-        serializeState();
-    }
-
-    private void serializeState() {
-        File windowXmlFile = getWorkbenchXmlFile();
+    private void serializeLayout() {
+        File windowXmlFile = getLayoutXmlFile();
         // create file if it does not exist
         if (!windowXmlFile.exists()) {
             try {
@@ -171,68 +197,10 @@ public class Workbench extends Stage {
         }
         // serialize state to file
         if (windowXmlFile.exists()) {
-            State state = new State(getX(), getY(), getWidth(), getHeight(), isMaximized(),
-                    getPerspectiveProviderService() != null ? getPerspectiveProviderService().getName() : null);
-            xmlFileSerializer.serialize(getWorkbenchXmlFile(), state);
+            Layout layout = new Layout(getX(), getY(), getWidth(), getHeight(), isMaximized(), customPerspectives,
+                    getPerspective() == null ? "Empty" : getPerspective().getName());
+            xmlFileSerializer.serialize(getLayoutXmlFile(), layout);
         }
     }
 
-    @XmlRootElement(name = "Workbench")
-    public static class State {
-
-        @XmlAttribute
-        private final Double x;
-
-        @XmlAttribute
-        private final Double y;
-
-        @XmlAttribute
-        private final Double width;
-
-        @XmlAttribute
-        private final Double height;
-
-        @XmlAttribute
-        private final Boolean maximized;
-
-        @XmlAttribute
-        private final String perspective;
-
-        public State() {
-            this(0.0, 0.0, 0.0, 0.0, false, null);
-        }
-
-        public State(Double x, Double y, Double width, Double height, Boolean maximized, String perspective) {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-            this.maximized = maximized;
-            this.perspective = perspective;
-        }
-
-        public Double getX() {
-            return x;
-        }
-
-        public Double getY() {
-            return y;
-        }
-
-        public Double getWidth() {
-            return width;
-        }
-
-        public Double getHeight() {
-            return height;
-        }
-
-        public Boolean getMaximized() {
-            return maximized;
-        }
-
-        public String getPerspective() {
-            return perspective;
-        }
-    }
 }

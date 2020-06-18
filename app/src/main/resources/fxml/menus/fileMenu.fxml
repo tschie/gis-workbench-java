@@ -14,8 +14,6 @@
     </Menu>-->
     <MenuItem text="Open..." onAction="#handleOpen"/>
     <SeparatorMenuItem/>
-    <fx:include source="importMenu.fxml"/>
-    <SeparatorMenuItem/>
     <MenuItem text="Settings..." onAction="#handleSettings"/>
     <SeparatorMenuItem/>
     <MenuItem text="Exit" onAction="#handleExit"/>

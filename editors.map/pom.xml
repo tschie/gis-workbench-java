@@ -22,8 +22,8 @@
 
     <packaging>bundle</packaging>
 
-    <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-    <artifactId>workbench</artifactId>
+    <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors</groupId>
+    <artifactId>map-editor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <repositories>
@@ -76,28 +76,8 @@
             <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.4.0-b180830.0359</version>
-        </dependency>
-        <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.workbench</groupId>
-            <artifactId>core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>launch</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>preferences</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>workspaces</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
+            <artifactId>editor-view</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -147,9 +127,8 @@
                         <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
-                        <Bundle-Activator>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.Activator</Bundle-Activator>
-                        <Export-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.service</Export-Package>
-                        <Private-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.*</Private-Package>
+                        <Bundle-Activator>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.map.Activator</Bundle-Activator>
+                        <Private-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.map.*</Private-Package>
                         <Service-Component>*</Service-Component>
                     </instructions>
                 </configuration>

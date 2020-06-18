@@ -16,12 +16,17 @@ public class TextEditorProviderServiceImpl implements EditorProviderService {
     }
 
     @Override
-    public Editor create(Workspace workspace, String id, Object data) {
+    public Editor create(Workspace workspace, Object data) {
         if (data instanceof File) {
-            return new TextEditor(workspace, id, data);
+            return new TextEditor(workspace, null, data);
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Editor recreate(Workspace workspace, String id) {
+        return null;
     }
 
     @Override

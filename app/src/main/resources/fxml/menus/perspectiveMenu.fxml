@@ -6,5 +6,5 @@
       fx:id="menu"
       fx:controller="com.esri.arcgisruntime.opensourceapps.gisworkbench.app.controller.menus.PerspectiveMenuController"
       text="Perspective">
-
+    <SeparatorMenuItem fx:id="separatorMenuItem"/>
 </Menu>

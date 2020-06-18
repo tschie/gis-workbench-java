@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuBar?>
+<MenuBar xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="com.esri.arcgisruntime.opensourceapps.gisworkbench.app.controller.MenuController">
+    <fx:include source="menus/fileMenu.fxml"/>
+    <fx:include source="menus/viewMenu.fxml"/>
+    <fx:include source="menus/helpMenu.fxml"/>
+</MenuBar>

@@ -17,7 +17,7 @@
 
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules;
 
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.perspective.service.PerspectiveService;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.PerspectiveService;
 import com.google.inject.AbstractModule;
 
 import java.util.Objects;

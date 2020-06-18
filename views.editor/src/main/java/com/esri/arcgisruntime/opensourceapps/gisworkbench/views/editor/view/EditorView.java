@@ -53,7 +53,7 @@ public class EditorView extends TabPane {
                                                     .filter(editorProviderService -> editorProviderService.supports(event.getData()))
                                                     .collect(Collectors.toList());
                                             if (!supportedEditors.isEmpty()) {
-                                                Tab tab = createTab(event.getData(), editorProviderServices);
+                                                Tab tab = createTab(event.getData(), supportedEditors);
                                                 getTabs().add(tab);
                                                 getSelectionModel().select(tab);
                                             }
@@ -75,17 +75,30 @@ public class EditorView extends TabPane {
         TabPane tabPane = new TabPane();
         tabPane.setSide(Side.BOTTOM);
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-        List<Tab> viewTabs = editorProviderServices.stream()
-                .map(editorProviderService -> editorProviderService.create(workspace, null, data))
+        System.out.println(editorProviders.size());
+        editorProviders.forEach(editorProviderService -> System.out.println(editorProviderService.getName()));
+        List<Tab> viewTabs = editorProviders.stream()
+                .map(editorProviderService -> editorProviderService.create(workspace, data))
                 .filter(Objects::nonNull)
                 .map(this::createViewTab)
                 .collect(Collectors.toList());
+        System.out.println(viewTabs.size());
         tabPane.getTabs().addAll(viewTabs);
-        tabPane.getSelectionModel().select(viewTabs.get(0));
 
         Tab tab = new Tab();
         tab.setContent(tabPane);
         tab.setUserData(data);
+        tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                Editor editor = (Editor) newValue.getUserData();
+                tab.setText(editor.getDisplayName());
+                editor.displayNameProperty().addListener((obs, oldVal, newVal) -> {
+                    if (editor.equals(getSelectionModel().getSelectedItem().getUserData())) {
+                        tab.setText(newVal);
+                    }
+                });
+            }
+        });
         tab.textProperty().bind(Bindings.createStringBinding(() -> ((Editor) tabPane.getSelectionModel().getSelectedItem().getUserData()).getDisplayName(),
                 tabPane.getSelectionModel().selectedItemProperty()));
         return tab;
