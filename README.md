@@ -4,9 +4,7 @@ GIS Workbench is a GIS desktop application platform for Java using JavaFX, OSGi,
 
 DISCLAIMER: GIS Workbench is still in development and is not production ready.
 
-For more information, please refer to the repository [wiki](https://github.com/ArcGIS/gis-workbench-java/wiki).
-
-![Screenshot](https://github.com/ArcGIS/gis-workbench-java/raw/master/gis-workbench-java.png)
+![Screenshot](gis-workbench-java.png)
 
 ## Features
 * Dynamic plugin architecture
@@ -14,21 +12,17 @@ For more information, please refer to the repository [wiki](https://github.com/A
 * Pure JavaFX controls
 * OSGi declarative services
 * Native executable distribution
-* Theming & branding support
+* Theming & branding support (Planned)
 
 ## Instructions
 
 ### Install
 
-Download the installer from the [releases](https://github.com/ArcGIS/gis-workbench-java/releases) page and follow the installer instructions.
+Download the installer from the [releases](https://github.com/Esri/gis-workbench-java/releases) page and follow the installer instructions.
 
 ### Build
 
-To build the native installer/executable, `cd` into workbench and run `mvnw verify` on Windows or `./mvnw verify` on Mac/Linux. See workbench/target for output.
-
-### Test
-
-To run all tests, run `mvnw test` on Windows or `./mvnw test` in the project root.
+To build the native installer/executable, `cd` into gisworkbench and run `mvnw verify` on Windows or `./mvnw verify` on Mac/Linux. See gisworkbench/target for output.
 
 ## Requirements
 
@@ -68,4 +62,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-A copy of the license is available in the repository's [license.txt]( https://github.com/ArcGIS/gis-workbench-java/raw/master/license.txt) file.
+A copy of the license is available in the repository's [license.txt]( https://github.com/Esri/gis-workbench-java/raw/master/license.txt) file.
