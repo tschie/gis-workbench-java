@@ -4,8 +4,6 @@ GIS Workbench is a GIS desktop application platform for Java using JavaFX, OSGi,
 
 DISCLAIMER: GIS Workbench is still in development and is not production ready.
 
-For more information, please refer to the repository [wiki](https://github.com/ArcGIS/gis-workbench-java/wiki).
-
 ![Screenshot](https://github.com/ArcGIS/gis-workbench-java/raw/master/gis-workbench-java.png)
 
 ## Features
@@ -24,18 +22,14 @@ Download the installer from the [releases](https://github.com/ArcGIS/gis-workben
 
 ### Build
 
-To build the native installer/executable, `cd` into workbench and run `mvnw verify` on Windows or `./mvnw verify` on
+To build the native installer/executable, `cd` into gisworkbench and run `mvnw verify` on Windows or `./mvnw verify` on
  Mac/Linux. See workbench/target/installer for output.
-
-### Test
-
-To run all tests, run `mvnw test` on Windows or `./mvnw test` in the project root.
 
 ## Requirements
 
 ### Development
 
-JDK 11 installed with JAVA_HOME configured on the PATH.
+[JDK 14](https://adoptopenjdk.net/?variant=openjdk14&jvmVariant=hotspot) installed with JAVA_HOME configured on the PATH.
 
 ### Production
 
