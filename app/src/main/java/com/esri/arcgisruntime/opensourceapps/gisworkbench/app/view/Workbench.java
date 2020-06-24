@@ -2,19 +2,15 @@ package com.esri.arcgisruntime.opensourceapps.gisworkbench.app.view;
 
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.Activator;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.model.Layout;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.Perspective;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.PerspectiveServiceModule;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.ViewServiceModule;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.WorkbenchModule;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.modules.WorkspaceServiceModule;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.Perspective;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.PerspectiveProviderService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.PerspectiveService;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.app.service.WorkspaceService;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.view.service.ViewService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.xml.XmlFileSerializer;
 import com.gluonhq.ignite.guice.GuiceContext;
 import com.google.inject.Inject;
+import com.google.inject.Module;
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -32,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -51,22 +46,14 @@ public class Workbench extends Stage {
 
     private final ObjectProperty<Perspective> perspective = new SimpleObjectProperty<>(null);
 
-    public Workbench(
-            Workspace workspace,
-            WorkspaceService workspaceService,
-            PerspectiveService perspectiveService,
-            ViewService viewService
-    ) {
+    public Workbench(Workspace workspace, PerspectiveService perspectiveService, List<Module> serviceModules) {
         super();
         this.workspace = workspace;
 
         // injects an fxmlLoader containing the following modules
-        GuiceContext guiceContext = new GuiceContext(this, () -> Arrays.asList(
-                new WorkbenchModule(this),
-                new WorkspaceServiceModule(workspaceService),
-                new PerspectiveServiceModule(perspectiveService),
-                new ViewServiceModule(viewService)
-        ));
+        List<Module> modules = new ArrayList<>(serviceModules);
+        modules.add(new WorkbenchModule(this));
+        GuiceContext guiceContext = new GuiceContext(this, () -> modules);
         guiceContext.init();
 
         // initialize scene from FXML
@@ -97,16 +84,16 @@ public class Workbench extends Stage {
         getIcons().addAll(icons);
 
         // deserialize layout or use default
-        Layout initialLayout = deserializeLayout();
-        if (initialLayout == null || workspace == null) {
-            initialLayout = new Layout();
-        }
-
-        // apply layout
-        Layout layout = initialLayout;
-        setWidth(layout.getWidth());
-        setHeight(layout.getHeight());
         if (workspace != null) {
+            Layout initialLayout = deserializeLayout();
+            if (initialLayout == null) {
+                initialLayout = new Layout();
+            }
+
+            // apply layout
+            Layout layout = initialLayout;
+            setWidth(layout.getWidth());
+            setHeight(layout.getHeight());
             setX(layout.getX());
             setY(layout.getY());
             setMaximized(layout.getMaximized());
@@ -117,32 +104,32 @@ public class Workbench extends Stage {
             perspectives.addAll(customPerspectives);
             // set matching perspective
             perspectives.stream()
-                    .filter(p -> p.getName().equals(layout.getPerspectiveName()))
-                    .findFirst()
-                    .ifPresent(this.perspective::setValue);
+                .filter(p -> p.getName().equals(layout.getPerspectiveName()))
+                .findFirst()
+                .ifPresent(this.perspective::setValue);
             perspectiveService.observableListProperty().addListener((ListChangeListener<PerspectiveProviderService>) change -> {
                 while (change.next()) {
                     change.getAddedSubList().stream()
-                            .map(PerspectiveProviderService::getPerspective)
-                            .filter(p -> p.getName().equals(layout.getPerspectiveName()))
-                            .findFirst()
-                            .ifPresent(this.perspective::setValue);
+                        .map(PerspectiveProviderService::getPerspective)
+                        .filter(p -> p.getName().equals(layout.getPerspectiveName()))
+                        .findFirst()
+                        .ifPresent(this.perspective::setValue);
                 }
             });
-        }
 
-        // watch layout for changes
-        xProperty().addListener(this::serializeLayout);
-        yProperty().addListener(this::serializeLayout);
-        widthProperty().addListener(this::serializeLayout);
-        heightProperty().addListener(this::serializeLayout);
-        maximizedProperty().addListener(this::serializeLayout);
-        customPerspectives.addListener((ListChangeListener<Perspective>) change -> {
-            while (change.next()) {
-                serializeLayout();
-            }
-        });
-        perspective.addListener(this::serializeLayout);
+            // watch layout for changes
+            xProperty().addListener(this::serializeLayout);
+            yProperty().addListener(this::serializeLayout);
+            widthProperty().addListener(this::serializeLayout);
+            heightProperty().addListener(this::serializeLayout);
+            maximizedProperty().addListener(this::serializeLayout);
+            customPerspectives.addListener((ListChangeListener<Perspective>) change -> {
+                while (change.next()) {
+                    serializeLayout();
+                }
+            });
+            perspective.addListener(this::serializeLayout);
+        }
     }
 
     public ObservableList<Perspective> getCustomPerspectives() {
@@ -166,8 +153,7 @@ public class Workbench extends Stage {
     }
 
     private File getLayoutXmlFile() {
-        assert workspace != null;
-        return getWorkspace().getMetadataDirectory().toPath().resolve("layout.xml").toFile();
+        return workspace.getMetadataDirectory().toPath().resolve("layout.xml").toFile();
     }
 
     private Layout deserializeLayout() {

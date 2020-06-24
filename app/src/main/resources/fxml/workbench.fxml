@@ -25,12 +25,9 @@
             <fx:include source="menu.fxml"/>
         </top>
         <center>
-            <SplitPane SplitPane.resizableWithParent="true">
-                <fx:include source="panes/leftPane.fxml"/>
-                <SplitPane SplitPane.resizableWithParent="true">
-                    <fx:include source="editor.fxml"/>
-                    <fx:include source="panes/rightPane.fxml"/>
-                </SplitPane>
+            <SplitPane>
+                <fx:include source="viewPane.fxml"/>
+                <fx:include source="editor.fxml" SplitPane.resizableWithParent="true"/>
             </SplitPane>
         </center>
     </BorderPane>

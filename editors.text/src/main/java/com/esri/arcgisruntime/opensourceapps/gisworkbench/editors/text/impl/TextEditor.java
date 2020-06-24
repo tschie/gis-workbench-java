@@ -1,30 +1,24 @@
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.impl;
 
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.editor.service.Editor;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.view.TextDisplay;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.views.editor.service.Editor;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
-import javafx.scene.Node;
 
 import java.io.File;
+import java.util.UUID;
 
 public class TextEditor extends Editor {
 
-    private final Node node;
+    private final File file;
 
-    public TextEditor(Workspace workspace, String id, Object data) {
-        super(workspace, id, data);
-        File file = (File) data;
-        this.node = new TextDisplay(file);
-        setDisplayName(file.getName());
+    public TextEditor(Workspace workspace, File file, UUID id) {
+        //TODO: serialization for editor properties such as scroll position
+        super(workspace, id,"Text", new TextDisplay(file));
+        this.file = file;
+        setDisplayText(file.getName());
     }
 
-    @Override
-    public String getName() {
-        return "Text";
-    }
-
-    @Override
-    public Node getNode() {
-        return node;
+    public File getFile() {
+        return file;
     }
 }

@@ -76,8 +76,13 @@
             <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
-            <artifactId>editor-view</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
+            <artifactId>editor</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.components</groupId>
+            <artifactId>map-component</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

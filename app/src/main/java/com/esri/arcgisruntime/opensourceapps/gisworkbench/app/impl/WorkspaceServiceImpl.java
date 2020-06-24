@@ -50,7 +50,6 @@ public class WorkspaceServiceImpl implements WorkspaceService {
                                 .map(w -> w.getRootDirectory().getAbsolutePath())
                                 .collect(Collectors.joining(";"))
                 );
-                System.out.println(preferences.get("lastWorkspaces", ""));
                 if (change.wasAdded()) {
                     recentWorkspaces.addAll(change.getAddedSubList());
                 }

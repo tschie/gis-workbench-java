@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public interface MapRepository<K, T> extends Repository<T> {
-    T getByKey(K key);
+    T get(K key);
 
     Set<Map.Entry<K, T>> getAllEntries();
 

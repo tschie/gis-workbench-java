@@ -14,4 +14,8 @@ public class ObjectFactory {
     public Perspective createPerspective() {
         return new Perspective();
     }
+
+    public Editors createEditors() {
+        return new Editors();
+    }
 }

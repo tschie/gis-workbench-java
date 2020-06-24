@@ -21,8 +21,8 @@
 
     <packaging>feature</packaging>
 
-    <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-    <artifactId>com.esri.arcgisruntime.opensourceapps.gisworkbench.feature</artifactId>
+    <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.features</groupId>
+    <artifactId>gis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <repositories>
@@ -34,23 +34,28 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>workbench</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.perspectives</groupId>
+            <artifactId>maps-perspective</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.workbench</groupId>
-            <artifactId>splash</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors</groupId>
+            <artifactId>map-editor</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>project-perspective</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
+            <artifactId>portal-items-view</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
-            <artifactId>editor-view</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
+            <artifactId>maps-view</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.components</groupId>
+            <artifactId>portal-item-map-component</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

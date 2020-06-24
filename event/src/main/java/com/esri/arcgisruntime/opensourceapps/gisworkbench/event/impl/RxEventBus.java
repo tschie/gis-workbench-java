@@ -6,13 +6,13 @@ import io.reactivex.subjects.PublishSubject;
 
 public class RxEventBus {
 
-    private final PublishSubject<Event> bus = PublishSubject.create();
+    private final PublishSubject<Event<?>> bus = PublishSubject.create();
 
-    public void send(Event event) {
+    public void send(Event<?> event) {
         bus.onNext(event);
     }
 
-    public Observable<Event> toObservable() {
+    public Observable<Event<?>> toObservable() {
         return bus;
     }
 

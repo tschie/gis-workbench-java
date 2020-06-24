@@ -1,8 +1,9 @@
 package com.esri.arcgisruntime.opensourceapps.gisworkbench.views.files.impl;
 
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.components.file.service.FileComponentService;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.event.service.EventService;
-import com.esri.arcgisruntime.opensourceapps.gisworkbench.views.files.view.FilesView;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.view.service.ViewProviderService;
+import com.esri.arcgisruntime.opensourceapps.gisworkbench.views.files.view.FilesTreeView;
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
 import javafx.scene.Node;
 import org.osgi.service.component.annotations.Component;
@@ -14,6 +15,9 @@ public class FilesViewProviderServiceImpl implements ViewProviderService {
     @Reference
     private EventService eventService;
 
+    @Reference
+    private FileComponentService fileComponentService;
+
     @Override
     public String getName() {
         return "Files";
@@ -21,7 +25,7 @@ public class FilesViewProviderServiceImpl implements ViewProviderService {
 
     @Override
     public Node createNodeForWorkspace(Workspace workspace) {
-        return new FilesView(workspace, eventService);
+        return new FilesTreeView(workspace, eventService, fileComponentService);
     }
 
     @Override

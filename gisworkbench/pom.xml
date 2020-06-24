@@ -57,7 +57,7 @@
         <!--GIS Workbench standard feature-->
         <dependency>
             <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.features</groupId>
-            <artifactId>standard-feature</artifactId>
+            <artifactId>all</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <classifier>features</classifier>
             <type>xml</type>
@@ -94,7 +94,7 @@
                         <feature>scr</feature>
                     </bootFeatures>
                     <startupFeatures>
-                        <feature>standard-feature</feature>
+                        <feature>all</feature>
                     </startupFeatures>
                     <deployProjectArtifact>false</deployProjectArtifact>
                     <archiveTarGz>false</archiveTarGz>

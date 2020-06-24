@@ -2,10 +2,20 @@ package com.esri.arcgisruntime.opensourceapps.gisworkbench.event.service;
 
 import com.esri.arcgisruntime.opensourceapps.gisworkbench.workspace.Workspace;
 
-import java.util.List;
+public class Event<T> {
+    private final T payload;
+    private final Workspace workspace;
 
-public interface Event {
-    List<String> getEventTypes();
-    Workspace getWorkspace();
-    Object getData();
+    public Event(T payload, Workspace workspace) {
+        this.payload = payload;
+        this.workspace = workspace;
+    }
+
+    public T getPayload() {
+        return payload;
+    }
+
+    public Workspace getWorkspace() {
+        return workspace;
+    }
 }

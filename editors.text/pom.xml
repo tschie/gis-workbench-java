@@ -71,13 +71,13 @@
             <version>11.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.gluonhq</groupId>
-            <artifactId>ignite-guice</artifactId>
-            <version>1.0.2</version>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench</groupId>
+            <artifactId>editor</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.views</groupId>
-            <artifactId>editor-view</artifactId>
+            <groupId>com.esri.arcgisruntime.opensourceapps.gisworkbench.components</groupId>
+            <artifactId>file-component</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -103,7 +103,6 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Bundle-Activator>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.Activator</Bundle-Activator>
-                        <Export-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.service</Export-Package>
                         <Private-Package>com.esri.arcgisruntime.opensourceapps.gisworkbench.editors.text.*</Private-Package>
                         <Service-Component>*</Service-Component>
                     </instructions>

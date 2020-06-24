@@ -30,16 +30,16 @@ public class EventServiceImpl implements EventService {
 
     private final RxEventBus rxEventBus = new RxEventBus();
 
-    private final Flow.Publisher<Event> eventPublisher =
+    private final Flow.Publisher<Event<?>> eventPublisher =
             FlowAdapters.toFlowPublisher(rxEventBus.toObservable().toFlowable(BackpressureStrategy.DROP));
 
     @Override
-    public void emit(Event event) {
+    public void emit(Event<?> event) {
         rxEventBus.send(event);
     }
 
     @Override
-    public Flow.Publisher<Event> getPublisher() {
+    public Flow.Publisher<Event<?>> getPublisher() {
         return eventPublisher;
     }
 }

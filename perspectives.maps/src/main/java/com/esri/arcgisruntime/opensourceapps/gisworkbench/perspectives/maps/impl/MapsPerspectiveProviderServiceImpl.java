@@ -23,13 +23,14 @@ import org.osgi.service.component.annotations.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Component(immediate = true)
 public class MapsPerspectiveProviderServiceImpl implements PerspectiveProviderService {
 
     @Override
     public Perspective getPerspective() {
-        return new Perspective("Maps", new ArrayList<>(Collections.singletonList("Web Maps")), new ArrayList<>(),
+        return new Perspective("Maps", new ArrayList<>(List.of("Portal Items", "Maps")), new ArrayList<>(),
                 new ArrayList<>());
     }
 }

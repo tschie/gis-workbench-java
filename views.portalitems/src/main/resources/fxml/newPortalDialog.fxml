@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root type="Dialog" xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml" title="New portal item">
+    <dialogPane>
+        <DialogPane>
+            <content>
+                <GridPane>
+                    <Label text="Portal URL:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                    <TextField
+                        fx:id="portalUrlTextField"
+                        promptText="http://arcgis.com"
+                        GridPane.rowIndex="0"
+                        GridPane.columnIndex="1"
+                    />
+                    <Label text="Item ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField
+                        fx:id="itemIdTextField"
+                        promptText="16f1b8ba37b44dc3884afc8d5f454dd2"
+                        GridPane.rowIndex="1"
+                        GridPane.columnIndex="1"
+                    />
+                </GridPane>
+            </content>
+            <ButtonType text="Cancel" buttonData="CANCEL_CLOSE"/>
+            <ButtonType fx:id="okButtonType" text="Ok" buttonData="OK_DONE"/>
+        </DialogPane>
+    </dialogPane>
+</fx:root>
