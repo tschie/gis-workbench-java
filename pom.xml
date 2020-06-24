@@ -28,18 +28,31 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>workbench</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.canvas</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.core</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.features.all</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.filetab</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.menu</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.perspective</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.preferences</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.project</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.selection</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.splash</module>
-        <module>com.esri.arcgisruntime.opensourceapps.gisworkbench.workbench.stage</module>
+        <module>components.file</module>
+        <module>components.file.workspace</module>
+        <module>components.map</module>
+        <module>components.map.portalitems</module>
+        <module>components.portalitem</module>
+        <module>components.portalitem.workspace</module>
+        <module>editor</module>
+        <module>editors.map</module>
+        <module>editors.text</module>
+        <module>event</module>
+        <module>events.editor</module>
+        <module>features.all</module>
+        <module>features.app</module>
+        <module>features.files</module>
+        <module>features.gis</module>
+        <module>gisworkbench</module>
+        <module>perspectives.files</module>
+        <module>perspectives.maps</module>
+        <module>repository</module>
+        <module>view</module>
+        <module>views.files</module>
+        <module>views.maps</module>
+        <module>views.portalitems</module>
+        <module>workspace</module>
+        <module>xml</module>
     </modules>
 
     <build>
