@@ -1,0 +1,1 @@
+Provides map components from portal item components which are web maps

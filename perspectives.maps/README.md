@@ -1,0 +1,1 @@
+Provides a perspective used to view maps

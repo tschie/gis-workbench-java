@@ -1,0 +1,1 @@
+Defines a feature containing just the GIS Workbench app "shell" without any extra functionality

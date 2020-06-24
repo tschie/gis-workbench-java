@@ -1,0 +1,1 @@
+Defines a map component for entities

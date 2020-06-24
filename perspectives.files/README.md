@@ -1,0 +1,1 @@
+Provides a perspective for viewing files

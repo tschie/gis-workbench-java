@@ -1,0 +1,1 @@
+View displaying maps from the map component

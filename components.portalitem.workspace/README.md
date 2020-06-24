@@ -1,0 +1,1 @@
+Provides portal item components which are serialized to the workspace meta directory

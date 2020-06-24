@@ -1,0 +1,1 @@
+Defines common storage-model interfaces used by other bundles

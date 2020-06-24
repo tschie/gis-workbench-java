@@ -1,0 +1,1 @@
+Defines a workspace. A workspace is a directory in which a user is working. Defines the context for plugins.

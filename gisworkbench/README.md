@@ -1,0 +1,1 @@
+GIS Workbench assembly. Creates a platform-specific executable will all standard plugin features.

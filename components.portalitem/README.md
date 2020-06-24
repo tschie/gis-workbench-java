@@ -1,0 +1,1 @@
+Defines a portal item component for entities

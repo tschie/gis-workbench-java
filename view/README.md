@@ -1,0 +1,1 @@
+Defines a service in which view providers can be found which can render a view for a given workspace

@@ -1,0 +1,1 @@
+Defines a map editor for viewing maps

@@ -1,0 +1,1 @@
+Provides file components from the workspace's contents

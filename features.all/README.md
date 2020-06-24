@@ -1,0 +1,1 @@
+Defines a feature containing all standard features shipped with GIS Workbench by default

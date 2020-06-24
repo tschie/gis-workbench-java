@@ -1,0 +1,1 @@
+Defines events for interacting with the editor

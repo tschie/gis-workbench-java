@@ -1,0 +1,1 @@
+Defines a file component for entities

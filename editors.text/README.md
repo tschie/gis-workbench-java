@@ -1,0 +1,1 @@
+Provides a text editor for viewing text files

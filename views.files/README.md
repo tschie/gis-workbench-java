@@ -1,0 +1,1 @@
+View displaying files from the file component

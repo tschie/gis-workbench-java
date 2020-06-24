@@ -1,0 +1,1 @@
+Defines a feature containing bundles pertaining to GIS workflows

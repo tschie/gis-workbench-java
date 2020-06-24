@@ -1,0 +1,1 @@
+View displaying portal items from the portal item component
